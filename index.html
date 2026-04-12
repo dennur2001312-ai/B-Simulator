@@ -17,11 +17,11 @@
     .tab.active { display: flex; animation: fadeIn 0.2s ease; }
     .tab::-webkit-scrollbar { width: 0; }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
-    #tab-main { padding: 16px; align-items: center; gap: 16px; }
-    .coin-btn { width: 150px; height: 150px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #fde68a, #d97706); box-shadow: 0 8px 24px rgba(245, 158, 11, 0.4), inset 0 -6px 12px rgba(0,0,0,0.2); display: flex; align-items: center; justify-content: center; cursor: pointer; user-select: none; flex-shrink: 0; transition: transform 0.1s cubic-bezier(0.34, 1.56, 0.64, 1); border: none; position: relative; margin-top: 10px; }
+    #tab-main { padding: 8px 16px 16px; align-items: center; gap: 12px; }
+    .coin-btn { width: 200px; height: 200px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #fde68a, #d97706); box-shadow: 0 10px 30px rgba(245, 158, 11, 0.45), inset 0 -8px 16px rgba(0,0,0,0.2); display: flex; align-items: center; justify-content: center; cursor: pointer; user-select: none; flex-shrink: 0; transition: transform 0.1s cubic-bezier(0.34, 1.56, 0.64, 1); border: none; position: relative; margin: 4px 0; }
     .coin-btn:active { transform: scale(0.94); }
-    .coin-btn::before { content: ''; position: absolute; inset: 12px; border-radius: 50%; background: #fef3c7; box-shadow: inset 0 2px 6px rgba(0,0,0,0.1); }
-    .coin-btn span { position: relative; z-index: 1; font-size: 3.5rem; font-weight: 900; color: #b45309; text-shadow: 0 2px 4px rgba(0,0,0,0.15); }
+    .coin-btn::before { content: ''; position: absolute; inset: 14px; border-radius: 50%; background: #fef3c7; box-shadow: inset 0 2px 8px rgba(0,0,0,0.1); }
+    .coin-btn span { position: relative; z-index: 1; font-size: 4.5rem; font-weight: 900; color: #b45309; text-shadow: 0 2px 4px rgba(0,0,0,0.15); }
     .panel { width: 100%; background: #f8f9fa; border-radius: 16px; padding: 14px; text-align: center; flex-shrink: 0; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
     .panel-row { display: flex; justify-content: space-between; align-items: center; font-size: 0.9rem; font-weight: 600; margin-bottom: 8px; }
     .bar { width: 100%; height: 8px; background: #e5e7eb; border-radius: 4px; overflow: hidden; }
@@ -112,17 +112,42 @@
     .game-btn:disabled { background: #d1d5db; cursor: not-allowed; box-shadow: none; }
     .game-btn.danger { background: #ef4444; }
     .game-score { font-size: 1.5rem; font-weight: 800; color: #10b981; }
-    .nav { display: flex; border-top: 1px solid #e5e7eb; flex-shrink: 0; background: #fff; padding-bottom: 10px; padding-top: 4px; }
-    .nav-btn { flex: 1; background: none; border: none; padding: 8px 0; display: flex; flex-direction: column; align-items: center; gap: 4px; cursor: pointer; font-size: 0.75rem; color: #9ca3af; font-weight: 600; }
-    .nav-btn .ni { font-size: 1.4rem; transition: 0.2s; }
+    .nav { display: flex; border-top: 1px solid #e5e7eb; flex-shrink: 0; background: #fff; padding-bottom: 8px; padding-top: 4px; }
+    .nav-btn { flex: 1; background: none; border: none; padding: 6px 0; display: flex; flex-direction: column; align-items: center; gap: 2px; cursor: pointer; font-size: 0.7rem; color: #9ca3af; font-weight: 600; min-width: 0; }
+    .nav-btn .ni { font-size: 1.3rem; transition: 0.2s; }
     .nav-btn.active { color: #10b981; }
     .nav-btn.active .ni { transform: scale(1.1); }
+    .nav-sub { font-size: 0.55rem; color: #6b7280; font-weight: 500; opacity: 0.8; margin-top: 1px; }
     .float { position: fixed; font-weight: 800; color: #10b981; pointer-events: none; z-index: 999; font-size: 1.2rem; animation: fly 0.6s ease-out forwards; text-shadow: 0 2px 4px rgba(0,0,0,0.1); }
     @keyframes fly { 0% { opacity: 1; transform: translateY(0) scale(1); } 100% { opacity: 0; transform: translateY(-50px) scale(1.2); } }
     .toast { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: #10b981; color: #fff; padding: 10px 20px; border-radius: 10px; font-weight: 700; font-size: 0.9rem; z-index: 9999; animation: toastIn 0.3s ease, toastOut 0.3s ease 1.5s forwards; }
     .toast.loss { background: #ef4444; }
     @keyframes toastIn { from { opacity: 0; transform: translateX(-50%) translateY(-20px); } to { opacity: 1; transform: translateX(-50%) translateY(0); } }
     @keyframes toastOut { from { opacity: 1; } to { opacity: 0; transform: translateX(-50%) translateY(-20px); } }
+    .offline-modal { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 9998; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+    .offline-modal.show { opacity: 1; pointer-events: auto; }
+    .offline-content { background: #fff; border-radius: 16px; padding: 24px; max-width: 280px; width: 90%; text-align: center; box-shadow: 0 10px 40px rgba(0,0,0,0.3); transform: scale(0.8); transition: transform 0.3s; }
+    .offline-modal.show .offline-content { transform: scale(1); }
+    .offline-icon { font-size: 3rem; margin-bottom: 12px; }
+    .offline-title { font-size: 1.2rem; font-weight: 800; margin-bottom: 16px; }
+    .offline-stats { background: #f8f9fa; border-radius: 12px; padding: 12px; margin-bottom: 16px; }
+    .offline-stat { display: flex; justify-content: space-between; padding: 6px 0; font-size: 0.9rem; }
+    .offline-stat:not(:last-child) { border-bottom: 1px solid #e5e7eb; }
+    .offline-stat span:first-child { color: #6b7280; }
+    .offline-stat span:last-child { font-weight: 700; color: #10b981; }
+    .offline-total { font-size: 1.1rem; font-weight: 800; color: #10b981; margin-bottom: 16px; }
+    .offline-btn { background: #10b981; color: #fff; border: none; padding: 12px 24px; border-radius: 10px; font-size: 1rem; font-weight: 700; cursor: pointer; }
+    .promo-modal { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 9998; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+    .promo-modal.show { opacity: 1; pointer-events: auto; }
+    .promo-content { background: #fff; border-radius: 16px; padding: 24px; max-width: 280px; width: 90%; text-align: center; box-shadow: 0 10px 40px rgba(0,0,0,0.3); transform: scale(0.8); transition: transform 0.3s; }
+    .promo-modal.show .promo-content { transform: scale(1); }
+    .promo-icon { font-size: 3rem; margin-bottom: 12px; }
+    .promo-title { font-size: 1.2rem; font-weight: 800; margin-bottom: 16px; }
+    .promo-input { width: 100%; padding: 12px; font-size: 1rem; border: 2px solid #e5e7eb; border-radius: 10px; margin-bottom: 12px; text-align: center; outline: none; transition: 0.2s; }
+    .promo-input:focus { border-color: #10b981; }
+    .promo-btn { width: 100%; background: #10b981; color: #fff; border: none; padding: 12px; border-radius: 10px; font-size: 1rem; font-weight: 700; cursor: pointer; transition: 0.2s; }
+    .promo-btn:active { transform: scale(0.97); }
+    .promo-btn:disabled { background: #d1d5db; cursor: not-allowed; }
     .wheel-container { width: 200px; height: 200px; position: relative; }
     .wheel { width: 100%; height: 100%; border-radius: 50%; border: 8px solid #10b981; background: conic-gradient(#ef4444 0deg 60deg, #fde68a 60deg 120deg, #ef4444 120deg 180deg, #fde68a 180deg 240deg, #ef4444 240deg 300deg, #10b981 300deg 360deg); transition: transform 3s cubic-bezier(0.17, 0.67, 0.12, 0.99); }
     .wheel-pointer { position: absolute; top: -10px; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 12px solid transparent; border-right: 12px solid transparent; border-top: 20px solid #333; z-index: 2; }
@@ -203,15 +228,39 @@
     </div>
 
     <div class="nav">
-      <button class="nav-btn active" data-tab="main"><span class="ni">🏠</span>Меню</button>
-      <button class="nav-btn" data-tab="businesses"><span class="ni">💼</span>Бизнесы</button>
-      <button class="nav-btn" data-tab="tasks"><span class="ni">📋</span>Задания</button>
-      <button class="nav-btn" data-tab="games"><span class="ni">🎮</span>Игры</button>
+      <button class="nav-btn active" data-tab="main"><span class="ni">🏠</span><span>Меню</span></button>
+      <button class="nav-btn" data-tab="businesses"><span class="ni">💼</span><span>Бизнесы</span></button>
+      <button class="nav-btn" data-tab="tasks"><span class="ni">📋</span><span>Задания</span></button>
+      <button class="nav-btn" data-tab="games"><span class="ni">🎮</span><span>Игры</span></button>
+      <button class="nav-btn" id="promo-btn"><span class="ni">🎟️</span><span>Промокод</span><span class="nav-sub">Создать промокод</span></button>
     </div>
 
     <div class="game-overlay" id="game-overlay">
       <button class="game-close" id="game-close-btn">✕</button>
       <div id="game-container" style="width:100%;height:100%;display:flex;flex-direction:column;"></div>
+    </div>
+
+    <div class="offline-modal" id="offline-modal">
+      <div class="offline-content">
+        <div class="offline-icon">⏰</div>
+        <div class="offline-title">Пока тебя не было...</div>
+        <div class="offline-stats">
+          <div class="offline-stat"><span>⏱️ Время оффлайн:</span><span id="offline-time">0 сек</span></div>
+          <div class="offline-stat"><span>🤖 Автокликер:</span><span id="offline-auto">0$</span></div>
+          <div class="offline-stat"><span>🏢 Бизнес(ы):</span><span id="offline-biz">0$</span></div>
+        </div>
+        <div class="offline-total">Всего: <span id="offline-total">0$</span></div>
+        <button class="offline-btn" id="offline-btn">Забрать!</button>
+      </div>
+    </div>
+
+    <div class="promo-modal" id="promo-modal">
+      <div class="promo-content">
+        <div class="promo-icon">🎟️</div>
+        <div class="promo-title">Введите промокод</div>
+        <input type="text" class="promo-input" id="promo-input" placeholder="Код из чата..." maxlength="20">
+        <button class="promo-btn" id="promo-activate">Активировать</button>
+      </div>
     </div>
   </div>
 
@@ -282,8 +331,22 @@
         {id:'slots', name:'Слот-машина', icon:'🎰', desc:'Высокий риск, высокий куш', cost:50}
       ];
 
+      // 🎟️ ПРОМОКОДЫ (награды от 1000$ до 5000$)
+      const PROMO_CODES = {
+        'WELCOME2025': 1500,
+        'BSIMULATOR': 2000,
+        'FIRSTBIZ': 1000,
+        'MEGACLICK': 3000,
+        'LUCKYDAY': 2500,
+        'TOPPLAYER': 5000,
+        'FREEMONEY': 1200,
+        'BOOSTER': 1800,
+        'GAMEMASTER': 4000,
+        'SUPERSTAR': 3500
+      };
+
       const S = {money:0,energy:100,maxE:100,tap:1,auto:0,cost:{energy:100,tap:100,auto:100},owned:{},actBiz:null};
-      const G = {clicks:0,moneyEarned:0,autoIncome:0,today:'',completedTasks:[],dailyIndices:[]};
+      const G = {clicks:0,moneyEarned:0,autoIncome:0,today:'',completedTasks:[],dailyIndices:[],lastActive:0,usedPromos:[]};
 
       const $ = id => document.getElementById(id);
       const $$ = sel => document.querySelectorAll(sel);
@@ -341,6 +404,7 @@
       function isDone(task){ return G.completedTasks.includes(task.id); }
 
       function saveData(){
+        G.lastActive = Date.now();
         try{ localStorage.setItem('bsim_data', JSON.stringify({S,G})); }catch(e){}
       }
 
@@ -357,6 +421,8 @@
               G.completedTasks = d.G.completedTasks||[];
               G.today = d.G.today||'';
               G.dailyIndices = d.G.dailyIndices||[];
+              G.lastActive = d.G.lastActive||0;
+              G.usedPromos = d.G.usedPromos||[];
             }
           }
         }catch(e){}
@@ -395,6 +461,95 @@
         render();
         renderTasks();
         saveData();
+      }
+
+      function bizIncome(b){ return S.owned[b.id] ? b.inc*(1+(S.owned[b.id].w||0)*0.6) : 0; }
+      function bizTax(b){ return S.owned[b.id] ? b.tax*(1+(S.owned[b.id].w||0)*0.25) : 0; }
+
+      function calcOfflineEarnings(){
+        const now = Date.now();
+        if(G.lastActive <= 0) return {auto:0, biz:0, seconds:0};
+        const seconds = Math.floor((now - G.lastActive) / 1000);
+        if(seconds < 5) return {auto:0, biz:0, seconds:0};
+        const maxOffline = 86400;
+        const cappedSeconds = Math.min(seconds, maxOffline);
+        let autoEarn = 0, bizEarn = 0;
+        if(S.auto > 0) autoEarn = S.auto * cappedSeconds;
+        BIZ.forEach(b=>{
+          if(S.owned[b.id]){
+            const inc = bizIncome(b);
+            const tax = bizTax(b);
+            const netPerHour = inc - tax;
+            if(netPerHour > 0) bizEarn += (netPerHour / 3600) * cappedSeconds;
+          }
+        });
+        return { auto: Math.floor(autoEarn), biz: Math.floor(bizEarn), seconds: cappedSeconds };
+      }
+
+      function formatTime(seconds){
+        if(seconds < 60) return seconds + ' сек';
+        if(seconds < 3600) return Math.floor(seconds/60) + ' мин';
+        const h = Math.floor(seconds/3600);
+        const m = Math.floor((seconds%3600)/60);
+        return h + 'ч ' + m + 'м';
+      }
+
+      function showOfflineModal(earnings){
+        const modal = $('offline-modal');
+        if(!modal || earnings.seconds === 0) return;
+        $('offline-time').textContent = formatTime(earnings.seconds);
+        $('offline-auto').textContent = fmt(earnings.auto) + '$';
+        $('offline-biz').textContent = fmt(earnings.biz) + '$';
+        $('offline-total').textContent = fmt(earnings.auto + earnings.biz) + '$';
+        modal.classList.add('show');
+        const btn = $('offline-btn');
+        btn.onclick = () => {
+          const total = earnings.auto + earnings.biz;
+          addMoney(total);
+          modal.classList.remove('show');
+          toast('🎉 Получено ' + fmt(total) + '$ за оффлайн!');
+        };
+      }
+
+      // 🎟️ Promo functions
+      function openPromoModal(){
+        const modal = $('promo-modal');
+        const input = $('promo-input');
+        modal.classList.add('show');
+        input.value = '';
+        input.focus();
+      }
+
+      function closePromoModal(){
+        $('promo-modal').classList.remove('show');
+      }
+
+      function activatePromo(){
+        const input = $('promo-input');
+        const code = input.value.trim().toUpperCase();
+        
+        if(!code){
+          toast('❌ Введите код!');
+          return;
+        }
+
+        if(G.usedPromos.includes(code)){
+          toast('❌ Код уже использован!');
+          return;
+        }
+
+        if(PROMO_CODES[code]){
+          const reward = PROMO_CODES[code];
+          addMoney(reward);
+          G.usedPromos.push(code);
+          saveData();
+          closePromoModal();
+          toast('🎉 Промокод активирован! +' + fmt(reward) + '$');
+        }else{
+          toast('❌ Неверный код!');
+          input.style.borderColor = '#ef4444';
+          setTimeout(()=>input.style.borderColor='', 500);
+        }
       }
 
       function initListeners(){
@@ -437,6 +592,7 @@
         });
 
         $$('.nav-btn').forEach(btn=>{
+          if(btn.id === 'promo-btn') return;
           btn.addEventListener('click', ()=>{
             const tab = btn.dataset.tab;
             $$('.tab').forEach(t=>t.classList.remove('active'));
@@ -449,6 +605,24 @@
           });
         });
 
+        const promoBtn = $('promo-btn');
+        if(promoBtn) promoBtn.addEventListener('click', openPromoModal);
+
+        const promoActivate = $('promo-activate');
+        if(promoActivate) promoActivate.addEventListener('click', activatePromo);
+
+        const promoInput = $('promo-input');
+        if(promoInput){
+          promoInput.addEventListener('keypress', e=>{
+            if(e.key === 'Enter') activatePromo();
+          });
+        }
+
+        // Close promo modal on outside click
+        $('promo-modal').addEventListener('click', e=>{
+          if(e.target.id === 'promo-modal') closePromoModal();
+        });
+
         const bizClose = $('biz-close-btn');
         if(bizClose) bizClose.addEventListener('click', closeBiz);
 
@@ -457,10 +631,13 @@
 
         const dBtn = $('d-btn');
         if(dBtn) dBtn.addEventListener('click', bizAction);
-      }
 
-      function bizIncome(b){ return S.owned[b.id] ? b.inc*(1+(S.owned[b.id].w||0)*0.6) : 0; }
-      function bizTax(b){ return S.owned[b.id] ? b.tax*(1+(S.owned[b.id].w||0)*0.25) : 0; }
+        window.addEventListener('beforeunload', saveData);
+        window.addEventListener('pagehide', saveData);
+        document.addEventListener('visibilitychange', ()=>{
+          if(document.hidden) saveData();
+        });
+      }
 
       function renderBizList(){
         const g = $('biz-grid'); if(!g) return;
@@ -496,7 +673,6 @@
         const cost = o ? b.wc*(w+1) : b.p;
         const can = S.money >= cost;
         const full = o && w >= b.mw;
-
         const di = $('d-icon'); if(di) di.textContent = b.i;
         const dn = $('d-name'); if(dn) dn.textContent = b.n;
         const dinc = $('d-income'); if(dinc) dinc.textContent = fmt(bizIncome(b))+'$/ч';
@@ -615,9 +791,7 @@
         const overlay = $('game-overlay');
         const container = $('game-container');
         if(!overlay || !container) return;
-        
         if(activeGameCleanup){ activeGameCleanup(); activeGameCleanup = null; }
-        
         overlay.classList.add('open');
         container.innerHTML = `<div class="game-title" id="g-title"></div><div class="game-area" id="g-area"></div>`;
         const title = $('g-title');
@@ -645,7 +819,6 @@
 
         switch(id){
           case 'wheel': {
-            // Cost 100. Sectors: 0, 0, 0, 50, 100, 200. Avg ~58. EV < Cost.
             area.innerHTML = `<div class="wheel-container"><div class="wheel-pointer"></div><div class="wheel" id="wheel-el" style="transform:rotate(0deg)"></div></div><div class="game-score" id="wheel-res">Стоимость: 100$</div>`;
             const btn = createBtn('Крутить (-100$)', ()=>{
               if(!payCost(100)) return;
@@ -660,23 +833,10 @@
               wheel.style.transform = `rotate(${startDeg + addDeg}deg)`;
               res.textContent = 'Крутится...';
               setTimeout(()=>{
-                // 6 sectors. Index 0 is top (pointer).
-                // Rotation clockwise. Pointer is at top.
-                // Final angle mod 360 determines sector.
-                // Sector size 60 deg.
-                // 0-60: idx 0. 60-120: idx 1...
-                // But rotation increases angle.
-                // If rotate 60, sector 1 moves to top?
-                // No, if rotate 60, what was at 300 moves to 0?
-                // Actually, transform rotates element.
-                // If rotate 60deg, point at -60deg comes to 0.
-                // So index = Math.floor(((360 - (final%360)) % 360) / 60).
                 const finalDeg = startDeg + addDeg;
                 const norm = finalDeg % 360;
                 const idx = Math.floor(((360 - norm) % 360) / 60);
-                const rewards = [0, 50, 0, 100, 0, 200]; // Order matches CSS conic-gradient
-                // CSS: red 0-60, gold 60-120, red 120-180, gold 180-240, red 240-300, green 300-360
-                // Rewards: 0, 50, 0, 100, 0, 200
+                const rewards = [0, 50, 0, 100, 0, 200];
                 const win = rewards[idx];
                 if(win > 0){
                   addMoney(win);
@@ -693,7 +853,6 @@
             break;
           }
           case 'speedtap': {
-            // Free. Threshold 25 taps. Reward (taps-25)*2.
             area.innerHTML = `<div class="game-score" id="tap-score">0</div><div id="tap-timer">10.0 сек</div>`;
             const btn = createBtn('ТАПАЙ!', ()=>{});
             btn.style.width='150px'; btn.style.height='150px'; btn.style.borderRadius='50%'; btn.style.fontSize='1.5rem';
@@ -727,7 +886,6 @@
             break;
           }
           case 'catchcoins': {
-            // Free. Reward caught * 2.
             area.innerHTML = `<div class="game-area" style="height:100%;position:relative;overflow:hidden;background:#e5e7eb;border-radius:12px;" id="catch-area">
               <div class="basket" id="basket"></div>
               <div class="game-score" id="catch-score" style="position:absolute;top:10px;left:10px;background:rgba(255,255,255,0.8);padding:4px 8px;border-radius:6px;">0</div>
@@ -738,7 +896,6 @@
             const scoreEl = $('catch-score');
             const livesEl = $('catch-lives');
             let caught=0, lives=3, coins=[], spawnInt=null, raf=null;
-            
             const moveBasket = (x) => {
               if(!cArea || !basket) return;
               const r = cArea.getBoundingClientRect();
@@ -747,7 +904,6 @@
             };
             cArea.addEventListener('touchmove', e=>{ e.preventDefault(); moveBasket(e.touches[0].clientX); }, {passive:false});
             cArea.addEventListener('mousemove', e=>moveBasket(e.clientX));
-            
             const spawn = () => {
               const c = document.createElement('div');
               c.className = 'coin-fall';
@@ -757,7 +913,6 @@
               coins.push({el:c, x:x, y:-30, speed:2.5+Math.random()*3});
             };
             spawnInt = setInterval(spawn, 700);
-            
             const loop = () => {
               if(!cArea || !basket) return;
               const r = cArea.getBoundingClientRect();
@@ -804,7 +959,6 @@
             break;
           }
           case 'guess': {
-            // Cost 20. Win 80.
             if(!payCost(20)){ closeGame(); return; }
             const target = Math.floor(Math.random()*100)+1;
             let att = 7;
@@ -842,7 +996,6 @@
             break;
           }
           case 'math': {
-            // Free. Reward correct * 10. Wrong -5.
             area.innerHTML = `<div class="game-score" id="math-score">0</div>
               <div class="game-score" style="font-size:2rem;" id="math-prob">5 + 3 = ?</div>
               <div class="game-row"><input type="number" class="math-input" id="math-in"><button class="game-btn" id="math-check">OK</button></div>
@@ -874,7 +1027,6 @@
                 score.textContent = mScore;
                 gen();
               }else{
-                // Penalty
                 if(S.money >= 5){
                   S.money -= 5;
                   render();
@@ -912,7 +1064,6 @@
             break;
           }
           case 'target': {
-            // Free. Reward hits * 3.
             area.innerHTML = `<div class="game-score" id="t-score">0</div>
               <div class="game-area" style="height:100%;position:relative;overflow:hidden;background:#f3f4f6;border-radius:12px;" id="t-area">
                 <div class="target-circle" id="t-circ"></div>
@@ -953,7 +1104,6 @@
             break;
           }
           case 'memory': {
-            // Cost 30. Win 100.
             if(!payCost(30)){ closeGame(); return; }
             area.innerHTML = `<div class="mem-grid" id="mem-grid"></div><div id="mem-timer" style="color:#6b7280;">40 сек</div>`;
             const emojis = ['🍎','🍌','🍇','🍊','🍒','🍓','🥝','🍉'];
@@ -1003,8 +1153,6 @@
             break;
           }
           case 'slots': {
-            // Cost 50.
-            // 3x7: 500. 3xGem: 200. 3xFruit: 80. Pair: 10.
             area.innerHTML = `<div class="slot-machine">
               <div class="slot-reel" id="r1">🍒</div>
               <div class="slot-reel" id="r2">🍋</div>
@@ -1033,7 +1181,6 @@
                 }else if(r[0]===r[1] || r[1]===r[2] || r[0]===r[2]){
                   reward=10; msg='Пара';
                 }
-                
                 if(reward>0){
                   addMoney(reward);
                   res.textContent = `${msg}! +${reward}$`;
@@ -1065,6 +1212,13 @@
       renderTasks();
       updateTimer();
       renderGamesList();
+      
+      const offlineEarnings = calcOfflineEarnings();
+      if(offlineEarnings.seconds > 0){
+        setTimeout(()=>showOfflineModal(offlineEarnings), 500);
+      }
+      saveData();
+      
       setInterval(()=>{
         if(S.energy < S.maxE) S.energy++;
         if(S.auto > 0){ S.money += S.auto; G.autoIncome += S.auto; G.moneyEarned += S.auto; }
@@ -1079,6 +1233,7 @@
         render();
       }, 1000);
       setInterval(()=>{ updateTimer(); getDailyTasks(); renderTasks(); }, 1000);
+      setInterval(saveData, 5000);
 
     })();
   </script>
